@@ -1,21 +1,25 @@
+'''
+==============================================================================
+Django-Freeman: A one click tool to Django project creation
+==============================================================================
+'''
+
 from fabric.api import *
 import sys
 from importlib import import_module
 
-# env.host_string = "128.199.243.42"
-# env.user = 'root'
-# env.password = 'panacea!@#$90-='
-# env.venv = "panvenv"
-
-
-
-
+'''
+Usage: Listing home directory of the home/ folder of the server
+'''
 def list_homedir():
 	with cd("/home"):
 		l = run("ls")
 		return l
 
-
+'''
+Usage: Create virtualenv of the name specified in the config
+Checks whether an exsisting virtualenv is there, and if not creates a new one
+'''
 def create_virtualenv():
 	with cd("/home"):
 		run("if [ ! -d venvs ]; then mkdir venvs; fi")
@@ -32,6 +36,9 @@ def create_virtualenv():
 				result = run("virtualenv {venv}".format(venv=env.venv))
 				print "Created a Virtual Environment {venv}".format(venv = env.venv)
 
+'''
+Usage: Activates the virtualenv that is specified in the config
+'''
 def activate_virtualenv():
 	with cd("/home/venvs"):
 		run("source {venv}/bin/activate".format(venv = env.venv))
@@ -48,6 +55,13 @@ def apt_install(package):
 
 def apt_update():
 	run("apt-get update")
+
+'''
+Usage: Clones the repo specified in the config
+'''
+def clone_repo(repository):
+	with cd("/home"):
+		run("git clone {repository}".format(repository = repository))
 
 # create_virtualenv()
 # activate_virtualenv()
