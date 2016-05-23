@@ -1,8 +1,9 @@
 
 config = {
-	'mysql-password' : '<mysql password>',
+	'mysql_password' : '<mysql password>',
 	'host' : '<Host IP>',
 	'user' : '<username>',
 	'password' : '<password>',
-	'venv' : 'Vitrual Env name'
+	'venv' : '<vitrual env name>',
+	'repo' : '<github repo link>'
 }
